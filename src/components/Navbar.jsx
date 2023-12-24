@@ -8,16 +8,9 @@ export default function Navbar() {
 
     const { isLogged, setIsLogged } = useContext(Context)
 
-    function exit() {
-        setIsLogged(!isLogged)
-        navigate("/")
-    }
-
-    console.log(isLogged)
-
     return(
         <nav className="navbar">
-            <h1 className="nav-title">Finance <span className="yellow-highlight">Tracker</span></h1>
+            <h1 className="nav-title" onClick={() => navigate(isLogged ? "/home" : "/")}>Finance <span className="yellow-highlight">Tracker</span></h1>
 
             {
                 !isLogged 
@@ -28,7 +21,6 @@ export default function Navbar() {
 
                 : <div>
                     <button onClick={() => navigate('/profile')} className="nav-login">Profile</button>
-                    <button onClick={() => exit()} className="nav-login">Sair</button>
                 </div>
         }
         </nav>
