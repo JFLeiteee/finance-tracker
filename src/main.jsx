@@ -8,8 +8,10 @@ import SignUp from './routes/Signup.jsx'
 import ErrorPage from './routes/ErrorPage.jsx'
 import Home from './routes/Home.jsx'
 import LandingPage from './routes/LandingPage.jsx'
+import Calculator from './routes/Calculator.jsx'
+import Extract from './routes/Extract.jsx'
+import Goals from './routes/Goals.jsx'
 import { ContextProvider } from './context/Context.jsx'
-import Profile from './routes/Profile.jsx'
 
 const router = createBrowserRouter([
   {
@@ -26,9 +28,17 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "/profile",
-        element: <Profile />
-      }
+        path: "/extract",
+        element: <Extract />
+      },
+      {
+        path: "/Goals",
+        element: <Goals />
+      },
+      {
+        path: "/Calculator",
+        element: <Calculator />
+      },
     ],
   },
   {
