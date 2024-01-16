@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const Context = createContext()
 
@@ -7,6 +7,14 @@ export const ContextProvider = ({children}) =>{
     const [signUpMessage, setSignUpMessage] = useState("")
     const [loginMessage, setLoginMessage] = useState("")
     const [isLogged, setIsLogged] = useState(false)
+    const [isAccountCreated, setIsAccountCreated] = useState(false)
+
+    useEffect(() => {
+        const storedIsLogged = localStorage.getItem("isLogged");
+        if (storedIsLogged) {
+            setIsLogged(JSON.parse(storedIsLogged))
+        }
+    }, [])
 
     // WHEN THE SIGNUP FORM IS SUBMITED THE VALUES ARE PASSED TO THE LOCAL STORAGE
     function handleSubmit(event) {
@@ -24,35 +32,42 @@ export const ContextProvider = ({children}) =>{
                 username: username,
                 email: email,
                 password: password,
+                isActivated: false
             };
         
             localStorage.setItem("account", JSON.stringify(account));
-
-            setSignUpMessage("")
             setIsAccountCreated(true)
+            setSignUpMessage("")
         } else {
             setSignUpMessage("Password didn't match")
         }
     }
 
-    // GETTING THE VALUES FROM THE LOCAL STORAGE
-    const userNoObject = localStorage.getItem("account")
-    const user = JSON.parse(userNoObject)
-
+    
     // WHEN THE LOGIN FORM IS SUBMITTED IT CHECKS IF THE VALUES ARE THE SAME AS IN THE LOCAL STORAGE
     function checkAccount() {
         event.preventDefault()
+        
+        setIsLogged(true);
+
+        // GETTING THE VALUES FROM THE LOCAL STORAGE
+        const userNoObject = localStorage.getItem("account")
+        const user = JSON.parse(userNoObject)
 
         const username = document.querySelector("#login-username").value;
         const password = document.querySelector("#login-password").value;
 
         if(user.username == username && user.password == password) {
-            setIsLogged(true)
-            setLoginMessage("")
+            //  SETTING THE STATUS TO ACTIVE
+            localStorage.clear()
+            localStorage.setItem('isLogged', JSON.stringify(true));
+            localStorage.setItem("account", JSON.stringify(user))
         } else {
             setLoginMessage("Username or password is wrong")
         }
     }
+
+    console.log("isLogged: " + isLogged)
 
     return(
         <Context.Provider 
@@ -63,7 +78,7 @@ export const ContextProvider = ({children}) =>{
                 loginMessage,
                 isLogged,
                 setIsLogged,
-                user,
+                isAccountCreated
             }}
         >
             {children}

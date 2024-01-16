@@ -19,9 +19,15 @@ export default function Navbar() {
         fontWeight: "600"
     }
 
-    const { isLogged, setIsLogged, user } = useContext(Context)
+    const { isLogged, setIsLogged } = useContext(Context)
+
+    const userNoObject = localStorage.getItem("account")
+    const user = JSON.parse(userNoObject)
 
     function exit() {
+        localStorage.clear()
+        user.isActivated = false
+        localStorage.setItem("account", JSON.stringify(user))
         navigate("/")
         setIsLogged(false)
     }
@@ -54,8 +60,8 @@ export default function Navbar() {
                         
                         :
                             <div className="nav-options">
-                                <button className={isLogged ? "nav-profile" : "nav-login"}>
-                                    <span className="nav-circle">{user.name.substr(0,1)}</span>
+                                <button className="nav-profile">
+                                    <span className="nav-circle">{user.name.substr(0,1).toUpperCase()}</span>
                                     Welcome, {user.name.toUpperCase()}!
                                 </button>
                                 |

@@ -31,6 +31,7 @@ html {
 /* APP CONTAINER */
 .main-container {
   height: 100%;
+  padding: 3rem 8rem;
 }
 
 /* NAVBAR */

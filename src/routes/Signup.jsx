@@ -7,13 +7,16 @@ export default function SignUp() {
 
     const navigate = useNavigate();
 
-    const { handleSubmit, signUpMessage } = useContext(Context);
+    const { handleSubmit, signUpMessage, isAccountCreated } = useContext(Context);
 
     const fade = useSpring({
         from: { transform: "scale(1.1)", opacity: 0 },
         to: { transform: "scale(1)", opacity: 1 }
     })
 
+    useEffect(() => {
+        navigate("/login")
+    }, [isAccountCreated])
 
     return(
         <div className="login-background">
