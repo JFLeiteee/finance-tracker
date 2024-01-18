@@ -255,3 +255,63 @@ html {
   justify-content: center;
   gap: 1rem;
 }
+
+/* EXTRACT */
+.extract-form {
+  width: 30rem;
+  background-color: #e6e5e5;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.extract-spendings {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.input-radio {
+  margin-right: .5rem;
+  outline: none;
+}
+
+.extract-input-value {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #141414;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+.extract-category {
+  display: flex;
+  gap: 1rem;
+}
+
+.extract-select-input {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+.extract-submit {
+  width: 8rem;
+  height: 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: var(--darker-blue);
+  color: var(--white);
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.teste {
+  width: 10rem;
+  height: 10rem;
+}

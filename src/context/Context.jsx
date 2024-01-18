@@ -67,8 +67,6 @@ export const ContextProvider = ({children}) =>{
         }
     }
 
-    console.log("isLogged: " + isLogged)
-
     return(
         <Context.Provider 
             value={{
